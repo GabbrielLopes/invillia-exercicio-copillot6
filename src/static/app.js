@@ -25,6 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <div class="participants">
+            <h5>Participants:</h5>
+            <ul>
+              ${
+                details.participants.length > 0
+                  ? details.participants.map((participant) => `<li>${participant}</li>`).join("")
+                  : "<li>None</li>"
+              }
+            </ul>
+          </div>
         `;
 
         activitiesList.appendChild(activityCard);
@@ -79,6 +89,12 @@ document.addEventListener("DOMContentLoaded", () => {
       messageDiv.classList.remove("hidden");
       console.error("Error signing up:", error);
     }
+  });
+
+  // Add dark mode toggle functionality
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
   });
 
   // Initialize app
